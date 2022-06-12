@@ -51,3 +51,5 @@ end
 
 puts AssemblyLine.new(6).production_rate_per_hour == 1193.4 #true
 puts AssemblyLine.new(6).working_items_per_minute == 19 #true
+
+# ok
