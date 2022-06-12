@@ -11,22 +11,21 @@
 
 class LogLineParser
   def initialize(line)
-    @line = line
+    level, line = line.split(":")
+    @level = level.gsub(/\[|\]/, "").downcase
+    @line = line.strip
   end
 
   def message
-    @result = @line.split(":")
-    return @result[1].strip
+    @line
   end
 
   def log_level
-    @result = @line.split(":")
-    return @result[0].gsub("[","").gsub("]","").downcase
+    @level
   end
 
   def reformat
-    result = @line.split(":")
-    return result[1].strip + " " + result[0].gsub("[","(").gsub("]",")").downcase
+    "#{@line} (#{@level})"
   end
 end
 
