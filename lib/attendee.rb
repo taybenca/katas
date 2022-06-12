@@ -43,9 +43,24 @@ class Attendee
     def revoke_pass!
       @pass_id = nil
     end
+
+    # Check if an attendee has a ride pass
+    # Implement a method to return a boolean (true/false) value based on the presence of a ride pass.
+
+    def has_pass?
+      @pass_id != nil ? true : false
+    end
+
+    def fits_ride?(ride_minimum_height)
+      @height >= ride_minimum_height ? true : false
+    end
+
+    def allowed_to_ride?(ride_minimum_height)
+      has_pass? && (@height >= ride_minimum_height) == true ? true : false
+    end
+
 end
 
-attendee = Attendee.new(106)
+attendee = Attendee.new(100)
 attendee.issue_pass!(42)
-attendee.revoke_pass!
-puts attendee.pass_id
+puts attendee.allowed_to_ride?(120).inspect
